@@ -2,7 +2,7 @@ from facepy import GraphAPI
 import json
 from json2html import *
 import webbrowser
-graph= GraphAPI('EAAL76SmH3vMBAC9ADmDLE0E8ZBCmVZAcwSP8IB5CtlVDhLLT9DwbufvjZAjMjSfTecN4RTRZBIHM4bKQmSF7y7kFbSYcIdYXJeqtP2dbyZB7jgBS8XVpZCTTveYoGJFEvkLawfX1nb2cnjavWHmFlrilhDYhtspfgZD')
+graph= GraphAPI('YOUR_ACCESS_TOKEN')
 
 print("Please enter the page-id  " )
 PageId=raw_input()
@@ -23,5 +23,3 @@ f.write(htmlfile)
 f.close()
 
 webbrowser.open("Table.html")
-#webbrowser.open('www.google.co.in')
-#print(variable)
