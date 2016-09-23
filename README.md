@@ -4,5 +4,4 @@ It makes a table in .html format of the latest 5 posts and the respective latest
 
 The number of posts and comments can be changed by editing the graph.py file.
 
-Please replace the access token by your app's access token.
-s
+Please replace the YOUR_ACCESS_TOKEN by your app's access token.
