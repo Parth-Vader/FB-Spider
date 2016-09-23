@@ -7,8 +7,6 @@ graph= GraphAPI('EAAL76SmH3vMBAC9ADmDLE0E8ZBCmVZAcwSP8IB5CtlVDhLLT9DwbufvjZAjMjS
 print("Please enter the page-id  " )
 PageId=raw_input()
 
-graph= GraphAPI('EAAL76SmH3vMBAC9ADmDLE0E8ZBCmVZAcwSP8IB5CtlVDhLLT9DwbufvjZAjMjSfTecN4RTRZBIHM4bKQmSF7y7kFbSYcIdYXJeqtP2dbyZB7jgBS8XVpZCTTveYoGJFEvkLawfX1nb2cnjavWHmFlrilhDYhtspfgZD')
-
 variable = graph.get(str(PageId)+'/posts?fields=comments.limit(5){message},message&since=today&limit=5')
 
 
