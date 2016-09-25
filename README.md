@@ -14,5 +14,5 @@ Please replace the YOUR_ACCESS_TOKEN by your app's access token.
 
 3. Enter the page-id of the page you want to scrape.
 
-	You can get it from tellmyfbid.com
+	You can get it from www.findmyfbid.com
 4. Enjoy the contents in a table format.
