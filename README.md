@@ -1,4 +1,4 @@
-# FB-Crawler
+# FB-Spider
 A program which accepts the id of a Facebook page.
 It makes a table in .html format of the latest 5 posts and the respective latest 5 comments per post.
 
