@@ -3,8 +3,11 @@ A program which accepts the id of a Facebook page.
 It makes a table in .html format of the latest 5 posts and the respective latest 5 comments per post.
 
 The number of posts and comments can be changed by editing the graph.py file.
+# Get Started
 
-Please replace the YOUR_ACCESS_TOKEN by your app's access token.
+You would require a Facebook developer account to get an access token : https://developers.facebook.com/
+
+Register your app and replace the 'YOUR_ACCESS_TOKEN' by your app's access token.
 
 # Instructions
 
