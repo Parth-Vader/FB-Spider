@@ -7,7 +7,7 @@ The number of posts and comments can be changed by editing the graph.py file.
 
 You would require a Facebook developer account to get an access token : https://developers.facebook.com/
 
-Register your app and replace the 'YOUR_ACCESS_TOKEN' by your app's access token.
+Register your app and replace the 'YOUR_ACCESS_TOKEN' by your User Token : https://developers.facebook.com/tools/accesstoken/.
 
 # Instructions
 
@@ -19,3 +19,5 @@ Register your app and replace the 'YOUR_ACCESS_TOKEN' by your app's access token
 
 	You can get it from www.findmyfbid.com
 4. Enjoy the contents in a table format.
+   A file called 'Table.html' would be made in the folder itself.
+   You can open it and see the table.
