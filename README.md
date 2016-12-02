@@ -18,6 +18,9 @@ Register your app and replace the 'YOUR_ACCESS_TOKEN' by your User Token : https
 3. Enter the page-id of the page you want to scrape.
 
 	You can get it from www.findmyfbid.com
+	
+	Please note that this app will only work for public pages and not from profiles of other people.
+	That would require permission from the user.
 4. Enjoy the contents in a table format.
    A file called 'Table.html' would be made in the folder itself.
    You can open it and see the table.
