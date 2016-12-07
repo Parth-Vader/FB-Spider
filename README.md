@@ -5,9 +5,11 @@ It makes a table in .html format of the latest 5 posts and the respective latest
 The number of posts and comments can be changed by editing the graph.py file.
 # Get Started
 
+Install all the dependencies listed in `requirements.txt`.
+
 You would require a Facebook developer account to get an access token : https://developers.facebook.com/
 
-Register your app and replace the 'YOUR_ACCESS_TOKEN' by your User Token : https://developers.facebook.com/tools/accesstoken/.
+Register your app and replace the 'YOUR_ACCESS_TOKEN' in `graph.py` by your User Token : https://developers.facebook.com/tools/accesstoken/.
 
 # Instructions
 
