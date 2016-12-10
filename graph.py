@@ -17,6 +17,13 @@ pno=int(raw_input("Please enter the page no. : "))
 pid=search_res['data'][pno-1]['id']        
       
 variable = graph.get(pid+'/posts?fields=comments.limit(5){message},message&limit=5')
+
+#Deleting the paging sections 
+del variable['paging']
+
+for i in range(5):
+    if 'comments' in variable['data'][i]:
+        del variable['data'][i]['comments']['paging']
         
 with open('data.json', 'wb') as outfile:
     json.dump(variable, outfile)
