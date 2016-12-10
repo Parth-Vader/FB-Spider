@@ -2,7 +2,7 @@ from facepy import GraphAPI
 import json
 from json2html import *
 import webbrowser
-graph= GraphAPI('1312303095561934|2OxBi2j2GfHfCHpg_Omtc-tqDG8')
+graph= GraphAPI('YOUR_ACCESS_TOKEN')
 
 print("Please enter the page-name:" )
 PageName=raw_input()
@@ -17,13 +17,6 @@ pno=int(raw_input("Please enter the page no. : "))
 pid=search_res['data'][pno-1]['id']        
       
 variable = graph.get(pid+'/posts?fields=comments.limit(5){message},message&limit=5')
-
-#Deleting the paging sections 
-del variable['paging']
-
-for i in range(5):
-    if 'comments' in variable['data'][i]:
-        del variable['data'][i]['comments']['paging']
         
 with open('data.json', 'wb') as outfile:
     json.dump(variable, outfile)
