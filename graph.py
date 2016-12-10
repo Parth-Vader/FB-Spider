@@ -4,13 +4,20 @@ from json2html import *
 import webbrowser
 graph= GraphAPI('YOUR_ACCESS_TOKEN')
 
-print("Please enter the page-id  " )
-PageId=raw_input()
+print("Please enter the page-name:" )
+PageName=raw_input()
 
-variable = graph.get(str(PageId)+'/posts?fields=comments.limit(5){message},message&since=today&limit=5')
+search_res=graph.get('search?q='+PageName+'&type=page&limit=5')
 
-
-import json
+for index,item in enumerate(search_res['data']):
+    #The 'data' key of 'search_res' dictionary is a list of dictionaries of 5 pages
+    print index+1,item['name']
+    
+pno=int(raw_input("Please enter the page no. : "))
+pid=search_res['data'][pno-1]['id']        
+      
+variable = graph.get(pid+'/posts?fields=comments.limit(5){message},message&limit=5')
+        
 with open('data.json', 'wb') as outfile:
     json.dump(variable, outfile)
 
