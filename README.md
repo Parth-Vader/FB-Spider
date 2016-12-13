@@ -35,7 +35,8 @@ If not, install the libraries by the following command: `pip install -r requirem
    You can open it and see the table.
    
 # Contribute
-You can contribute to the repo via this really-simple steps:
-1) Star and fork this repo.
-2) CLone your fork
-3)
+You can contribute to the repo via this really-simple steps:<br>
+1. Star and fork this repo.<br>
+2. Clone your repo.<br>
+3. Tackle down the issues or add your own innovations.<br>
+4. Pull Request<br>
