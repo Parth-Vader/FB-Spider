@@ -16,7 +16,7 @@ Other than requiring a Python IDE, you require the following libraries:
 2. json
 3. json2html
 4. webbrowser
-If not, install the libraries by the following command: 'pip install -r requirements.txt'
+If not, install the libraries by the following command: `pip install -r requirements.txt`.
 
 # Instructions
 
@@ -33,3 +33,9 @@ If not, install the libraries by the following command: 'pip install -r requirem
 4. Enjoy the contents in a table format.
    A file called 'Table.html' would be made in the folder itself.
    You can open it and see the table.
+   
+# Contribute
+You can contribute to the repo via this really-simple steps:
+1) Star and fork this repo.
+2) CLone your fork
+3)
