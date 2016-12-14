@@ -11,11 +11,11 @@ You would require a Facebook developer account to get an access token : https://
 Register your app and replace the 'YOUR_ACCESS_TOKEN' in `graph.py` by your User Token : https://developers.facebook.com/tools/accesstoken/.
 
 # Requirements
-Other than requiring a Python IDE, you require the following libraries:
-1. facepy
-2. json
-3. json2html
-4. webbrowser
+Other than requiring a Python IDE, you require the following libraries:<br>
+* facepy<br>
+* json<br>
+* json2html<br>
+* webbrowser<br>
 If not, install the libraries by the following command: `pip install -r requirements.txt`.
 
 # Instructions
@@ -36,7 +36,7 @@ If not, install the libraries by the following command: `pip install -r requirem
    
 # Contribute
 You can contribute to the repo via this really-simple steps:<br>
-1. Star and fork this repo.<br>
-2. Clone your repo.<br>
-3. Tackle down the issues or add your own innovations.<br>
-4. Pull Request<br>
+* Star and fork this repo.<br>
+* Clone your repo.<br>
+* Tackle down the issues or add your own innovations.<br>
+* Pull Request<br>
