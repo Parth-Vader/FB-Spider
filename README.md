@@ -24,7 +24,7 @@ If not, install the libraries by the following command: `pip install -r requirem
 
 2. Open your terminal and run 'python graph.py'
 
-3. Enter the page-id of the page you want to scrape.
+3. Enter the page name of the page you want to scrape.
 
 	You can get it from www.findmyfbid.com
 	
