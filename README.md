@@ -24,10 +24,8 @@ If not, install the libraries by the following command: `pip install -r requirem
 
 2. Open your terminal and run 'python graph.py'
 
-3. Enter the page name of the page you want to scrape.
+3. Enter the page name of the page you want to scrape. You see a display of 5 choices and then select one out 
 
-	You can get it from www.findmyfbid.com
-	
 	Please note that this app will only work for public pages and not from profiles of other people.
 	That would require permission from the user.
 4. Enjoy the contents in a table format.
