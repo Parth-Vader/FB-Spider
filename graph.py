@@ -16,7 +16,7 @@ for index,item in enumerate(search_res['data']):
 pno=int(raw_input("Please enter the page no. : "))
 pid=search_res['data'][pno-1]['id']        
       
-variable = graph.get(pid+'/posts?fields=comments.limit(5),message&limit=5')
+variable = graph.get(pid+'/posts?fields=comments.limit(5),link,message&limit=5')
         
 with open('data.json', 'wb') as outfile:
     json.dump(variable, outfile)
