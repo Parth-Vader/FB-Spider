@@ -2,6 +2,8 @@ from facepy import GraphAPI
 import json
 from json2html import *
 import webbrowser
+import re
+
 graph= GraphAPI('YOUR_ACCESS_TOKEN')
 
 print("Please enter the page-name:" )
@@ -38,6 +40,16 @@ with open('data.json', 'wb') as outfile:
 
 #infoFromJson = json.loads(variable)
 table = json2html.convert(json = variable)
+
+n=len(re.findall(r"(?<=<td>http://)\S+(?=</td>)|(?<=<td>https://)\S+(?=</td>)",table))
+
+def change_tag(matchobj):
+	return "<a href=\""+matchobj.group(0)+"\">"+matchobj.group(0)+"</a>"
+
+for i in range(0,n):
+	table=re.sub(r"(?<=<td>)http://\S+(?=</td>)|(?<=<td>)https://\S+(?=</td>)",change_tag,table)
+
+
 htmlfile=table.encode('utf-8')
 #print(htmlfile)
 f = open('Table.html','w')
