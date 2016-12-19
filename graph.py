@@ -18,15 +18,18 @@ pid=search_res['data'][pno-1]['id']
 
 variable = graph.get(pid+'/posts?fields=comments.limit(5),link,message&limit=5')
 
-del variable['paging']
-for i in range(0,5):
-	del variable['data'][i]['id']
-	try:
-		del variable['data'][i]['comments']['paging']
-		for j in range(0,len(variable['data'][i]['comments']['data'])):
-			del variable['data'][i]['comments']['data'][j]['id']
-			del variable['data'][i]['comments']['data'][j]['from']['id']
-	except:pass
+try:
+	del variable['paging']
+	for i in range(0,len(variable['data'])):
+		del variable['data'][i]['id']
+		try:
+			del variable['data'][i]['comments']['paging']
+			for j in range(0,len(variable['data'][i]['comments']['data'])):
+				del variable['data'][i]['comments']['data'][j]['id']
+				del variable['data'][i]['comments']['data'][j]['from']['id']
+		except:pass
+except:pass
+
 
 
 with open('data.json', 'wb') as outfile:
