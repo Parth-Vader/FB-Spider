@@ -2,6 +2,7 @@ from facepy import GraphAPI
 import json
 from json2html import *
 import webbrowser
+import re
 graph= GraphAPI('YOUR_ACCESS_TOKEN')
 
 print("Please enter the page-name:" )
@@ -16,20 +17,37 @@ for index,item in enumerate(search_res['data']):
 pno=int(raw_input("Please enter the page no. : "))
 pid=search_res['data'][pno-1]['id']        
       
-variable = graph.get(pid+'/posts?fields=comments.limit(5){message},message&limit=5')
+variable = graph.get(pid+'/posts?fields=comments.limit(5),link,message&limit=5')
 
-#Deleting the paging sections 
-del variable['paging']
+try:
+	del variable['paging']
+	for i in range(0,len(variable['data'])):
+		del variable['data'][i]['id']
+		try:
+			del variable['data'][i]['comments']['paging']
+			for j in range(0,len(variable['data'][i]['comments']['data'])):
+				del variable['data'][i]['comments']['data'][j]['id']
+				del variable['data'][i]['comments']['data'][j]['from']['id']
+		except:pass
+except:pass
 
-for i in range(5):
-    if 'comments' in variable['data'][i]:
-        del variable['data'][i]['comments']['paging']
-        
+
+
 with open('data.json', 'wb') as outfile:
     json.dump(variable, outfile)
 
 #infoFromJson = json.loads(variable)
 table = json2html.convert(json = variable)
+
+n=len(re.findall(r"(?<=<td>http://)\S+(?=</td>)|(?<=<td>https://)\S+(?=</td>)",table))
+
+def change_tag(matchobj):
+	return "<a href=\""+matchobj.group(0)+"\">"+matchobj.group(0)+"</a>"
+
+for i in range(0,n):
+	table=re.sub(r"(?<=<td>)http://\S+(?=</td>)|(?<=<td>)https://\S+(?=</td>)",change_tag,table)
+
+
 htmlfile=table.encode('utf-8')
 #print(htmlfile)
 f = open('Table.html','w')
