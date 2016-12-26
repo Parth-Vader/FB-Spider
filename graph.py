@@ -17,7 +17,7 @@ for index,item in enumerate(search_res['data']):
 pno=int(raw_input("Please enter the page no. : "))
 pid=search_res['data'][pno-1]['id']        
       
-variable = graph.get(pid+'/posts?fields=comments.limit(5),link,picture,message&limit=5')
+variable = graph.get(pid+'/posts?fields=comments.limit(5),link,full_picture,message&limit=5')
 
 try:
 	del variable['paging']
@@ -30,7 +30,7 @@ try:
 				del variable['data'][i]['comments']['data'][j]['from']['id']
 		except:pass
 		try:
-			variable['data'][i]['picture']='<img src=\"'+variable['data'][i]['picture']+'\">'
+			variable['data'][i]['full_picture']='<img src=\"'+variable['data'][i]['full_picture']+'\">'
 		except:pass
 		try:
 			variable['data'][i]['link']='<a href=\"'+variable['data'][i]['link']+'\">'+variable['data'][i]['link']+'</a>'
