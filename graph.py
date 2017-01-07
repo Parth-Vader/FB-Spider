@@ -33,7 +33,11 @@ try:
 			variable['data'][i]['full_picture']='<div style="width:500px;height:500px;overflow:scroll"><img style="width:100%;height:auto" src=\"'+variable['data'][i]['full_picture']+'\"></div>'
 		except:pass
 		try:
-			variable['data'][i]['link']='<a href=\"'+variable['data'][i]['link']+'\">'+variable['data'][i]['link']+'</a>'
+			variable['data'][i]['link']='<a href=\"'+variable['data'][i]['link']+'\">'+variable['data'][i]['message']+'</a>'
+		except:
+			variable['data'][i]['link']='<a href=\"'+variable['data'][i]['link']+'\">link</a>'
+		try:
+			del variable['data'][i]['message']
 		except:pass
 except:pass
 
