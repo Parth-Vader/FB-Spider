@@ -41,6 +41,12 @@ try:
 		except:pass
 except:pass
 
+#Removing 'data'
+for i in range(0,len(variable['data'])):
+	try:
+		variable['data'][i]['comments']=variable['data'][i]['comments']['data']
+	except:pass
+variable['']=variable.pop('data')
 
 
 with open('data.json', 'wb') as outfile:
