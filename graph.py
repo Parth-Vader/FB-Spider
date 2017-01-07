@@ -30,7 +30,7 @@ try:
 				del variable['data'][i]['comments']['data'][j]['from']['id']
 		except:pass
 		try:
-			variable['data'][i]['full_picture']='<img src=\"'+variable['data'][i]['full_picture']+'\">'
+			variable['data'][i]['full_picture']='<div style="width:500px;height:500px;overflow:scroll"><img style="width:100%;height:auto" src=\"'+variable['data'][i]['full_picture']+'\"></div>'
 		except:pass
 		try:
 			variable['data'][i]['link']='<a href=\"'+variable['data'][i]['link']+'\">'+variable['data'][i]['link']+'</a>'
