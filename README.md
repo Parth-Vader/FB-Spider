@@ -10,7 +10,6 @@ You would require a Facebook developer account to get an access token : https://
 
 Register your app and replace the 'YOUR_ACCESS_TOKEN' in `graph.py` by your User Token : https://developers.facebook.com/tools/accesstoken/.
 
-Use the `table_modified` branch for images,links,time of the post and comment, and without unwanted columns.
 
 # Requirements
 Other than requiring a Python IDE, you require the following libraries:<br>
