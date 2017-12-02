@@ -2,20 +2,20 @@ from facepy import GraphAPI
 import json
 from json2html import *
 import webbrowser
-
 graph= GraphAPI('YOUR_ACCESS_TOKEN')
 
 print("Please enter the page-name:" )
-PageName=raw_input()
+PageName=input()
 
 search_res=graph.get('search?q='+PageName+'&type=page&limit=5')
 
 for index,item in enumerate(search_res['data']):
     #The 'data' key of 'search_res' dictionary is a list of dictionaries of 5 pages
-    print index+1,item['name']
+    print ((index+1),'	|	',item['name'])
     
-pno=int(raw_input("Please enter the page no. : "))
-pid=search_res['data'][pno-1]['id']        
+pno=int(input("Please enter the page no. : "))
+pid=search_res['data'][pno-1]['id']
+        
       
 variable = graph.get(pid+'/posts?fields=comments.limit(5),link,full_picture,message&limit=5')
 
@@ -51,16 +51,28 @@ variable['']=variable.pop('data')
 variable.pop('headers')
 
 
-with open('data.json', 'wb') as outfile:
+with open('data.json', 'w+') as outfile:
     json.dump(variable, outfile)
 
-#infoFromJson = json.loads(variable)
 table = json2html.convert(json = variable)
 
 htmlfile=table.encode('utf-8')
-#print(htmlfile)
-f = open('Table.html','w')
+
+f = open('Table.html','wb')
 f.write(htmlfile)
 f.close()
 
+#replacing '&gt'  with '>' and  '&lt' with '<'
+f = open('Table.html','r')
+s=f.read()
+s=s.replace("&gt;",">")
+s=s.replace("&lt;","<")
+f.close()
+
+# writting content to html file
+f = open('Table.html','w')
+f.write(s)
+f.close()
+
+#output
 webbrowser.open("Table.html")
