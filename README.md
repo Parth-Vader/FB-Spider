@@ -25,7 +25,7 @@ Other than requiring Python3.x , you require the following libraries:<br>
 
 2. Open your terminal and change directory to your cloned project folder.
 
-3. `$ pip install --editable . ` This will install all the requirements listed.
+3. `$ pip3 install --editable . ` This will install all the requirements listed.
 
 4. Now run the program `$ python3 graph.py `
 
