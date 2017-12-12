@@ -63,14 +63,14 @@ if search_res['data']:
 	 f.close()
 
 	#	replacing '&gt'  with '>' and  '&lt' with '<'
-	 f = open('Table.html','r')
+	 f = open('Table.html','r', encoding='utf-8')
 	 s=f.read()
 	 s=s.replace("&gt;",">")
 	 s=s.replace("&lt;","<")
 	 f.close()
 
 	#	 writting content to html file
-	 f = open('Table.html','w')
+	 f = open('Table.html','w', encoding='utf-8')
 	 f.write(s)
 	 f.close()
 
