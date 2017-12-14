@@ -33,9 +33,11 @@ Other than requiring Python3.x , you require the following libraries:<br>
 * json<br>
 * json2html<br>
 * webbrowser<br>
+* PyQt4<br>
+* SIP<br>
 
 
-# Instructions
+# Instructions for the CLI Version
 
 [(Back to top)](#table-of-contents)
 
@@ -59,6 +61,37 @@ Other than requiring Python3.x , you require the following libraries:<br>
    A file called 'Table.html' would be made in the folder itself.
    You can open it and see the table.
    
+# Instructions for the GUI Version
+
+For the GUI Version, follow the steps
+1. Clone the repository to your local machine, open the terminal and change directory to your cloned project folder.
+2. Use a virtual environment `virtualenv --python=python3.5 --no-site-packages venv` 
+3. PyQt4 is not supported in Virtual Environment, so you need to setup PyQt manually in the `virtualenv`.
+4. Two dependencies need to be downloaded,PyQt4 and SIP.
+5. Download the binaries from the given website - (Choose the Source Packages)
+
+    [PYQT4](https://www.riverbankcomputing.com/software/pyqt/download)  
+    [SIP](https://www.riverbankcomputing.com/software/sip/download)
+    
+6. In the project folder, make a folder named build, and extract the PyQt4 and SIP, in the build folder.
+7. Activate `virtualenv` using `. venv/bin/activate`
+8. Install some prerequisites
+   - `sudo apt-get install python2.7-dev libxext-dev python-qt4 qt4-dev-tools build-essential`
+9. Go to build/SIP directory, and type the following commands:
+   `python configure.py`
+   `sudo make`
+   `sudo make install`
+10. Similarily for PyQt4, go to the build/PYQT4 directory and type the commands:
+    `python configure.py`
+    `sudo make`
+    `sudo make install`
+11. After the installation, run the following file `python3 main.py`
+12. A GUI will open, enter your Access Code, and press Go.
+13. Enter the page you want to search, and at last the choice of page number.
+14. Press Generate HTML, to generate the HTML File.
+
+Thanks to the Youtube Tutorial for preparing the instruction manual: [How to Install PyQt4 Inside Virtualenv](https://www.youtube.com/watch?v=6NDVP5inphM)
+
 # Contribute
 
 [(Back to top)](#table-of-contents)
