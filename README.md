@@ -63,6 +63,10 @@ Other than requiring Python3.x , you require the following libraries:<br>
    
 # Instructions for the GUI Version
 
+[(Back to top)](#table-of-contents)
+
+![demo](data/Gui_version.gif)
+
 For the GUI Version, follow the steps
 1. Clone the repository to your local machine, open the terminal and change directory to your cloned project folder.
 2. Use a virtual environment `virtualenv --python=python3.5 --no-site-packages venv` 
