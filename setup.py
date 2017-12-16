@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name ='FB-Spider',
-    version ='0.1',
+    version ='1.0',
     description = 'accepts the id of a Facebook page and transforms into a table of the latest 5 posts and the respective latest 5 comments per post. The table will be in .html format',
     author = 'Parth Verma',
     author_email = 'vermaparth97@gmail.com',
@@ -11,5 +11,12 @@ setup(
     install_requires=[
         'facepy',
         'json2html',
-    ]
+        'click',
+        'colorama'
+    ],
+    entry_points='''
+        [console_scripts]
+        fbs=graph:access_token_handler
+        fbspider=graph:page_handler
+    ''',
 )
