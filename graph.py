@@ -1,46 +1,168 @@
 from facepy import GraphAPI
 import json
+import sys
 from json2html import *
 import webbrowser
 import click
 
-cli=click.Group()
-@cli.command()
-@click.pass_context
-def page_handler(ctx):	
+@click.group()
+def cli():
+	pass	
 
+#checks wether userdata.json is ready for use 
+def error_check():
 	try:
-		with open("userdata.txt", "x") as outfile:
-			pass
+		with open("userdata.json", "x") as outfile:
+			click.secho("Please Initialise ",fg="green",bold=True)
+			sys.exit(0)
 	except FileExistsError:
-		pass
+		try:
+			with open("userdata.json","r") as outfile:
+				data=json.load(outfile)
+				if('token' in data and 'npa' in data and 'npo' in data):
+					pass
+				else:
+					raise ValueError()	
+		except ValueError:
+			click.secho("User data may have been corrupted or not Initialised.Please Initialise",fg="red",bold=True)
+			sys.exit(0)
 
-
-	with open("userdata.txt","r")as outfile:
-		s=outfile.read().strip()
-		if s=="":
-			click.clear()
-			click.secho("No Access token found. Please provide the Access token.\n",fg="red",bold=True)
-			ctx.invoke(access_token_handler,edit=True)
-		outfile.seek(0)
-		s=outfile.read().strip()
-				
-	graph= GraphAPI(s)
+#initialise the userdata.json
+@cli.command('initialise',short_help="Initialise with the required info.")
+def initialise():
 	click.clear()
-	click.secho("Please enter the page-name:")
-	PageName=input()
+	click.secho("Enter the User access token",fg="green",bold=True)
+	token=input()
+	click.secho("Enter the no of result pages for your input.\nBy default it is set to 5.",fg="green",bold=True)
+	try:
+   		val = int(input())
+   		npa=val
+	except ValueError:
+		npa=5
+	click.secho("Enter the no of posts in the output page.\nBy default it is set to 5.",fg="green",bold=True)
+	try:
+   		val = int(input())
+   		npo=val
+	except ValueError:
+		npo=5
+	click.clear()
+	click.secho("Data initialised succesfully",fg="green",bold=True)		
+	with open("userdata.json","w") as outfile:
+		data={'token':token,'npa':npa,'npo':npo}
+		json.dump(data,outfile)
+			
+#shows the data stored in userdata.json file	
+@cli.command('show',short_help='Shows the specified value stored.')
+@click.option('--token',is_flag=bool,default=False,help='Shows the user access token stored.')
+@click.option('--npa',is_flag=bool,default=False,help='Shows the default no of pages for given input.')
+@click.option('--npo',is_flag=bool,default=False,help='Shows the default no of top post in the output.')
+def show(token,npa,npo):
+	error_check()
+	with open("userdata.json","r") as outfile:
+		data=json.load(outfile)
+	if token:
+		click.secho("User access token\n",fg="green",bold=True)
+		click.secho(data['token'],fg="blue",bold=True)
+	elif npa:
+		click.secho("No of pages: ",nl=False,fg="green",bold=True)
+		click.secho(str(data['npa']),fg="blue",bold=True)			
+	elif npo:
+		click.secho("No of posts: ",nl=False,fg="green",bold=True)
+		click.secho(str(data['npo']),fg="blue",bold=True)	
+	else:
+		click.secho("Option not specified",fg="red",bold=True)
+		sys.exit(0)			
 
-	search_res=graph.get('search?q='+PageName+'&type=page&limit=5')
+#edits the data stored in userdata.json file
+@cli.command('edit',short_help='edits the specified value stored.')
+@click.option('--token',is_flag=bool,default=False,help='Edits the user access token stored.')
+@click.option('--npa',is_flag=bool,default=False,help='Edits the no of pages.')
+@click.option('--npo',is_flag=bool,default=False,help='Edits the no of top post.')
+def edit(token,npa,npo):
+	error_check()
+	with open("userdata.json","r") as outfile:
+		data=json.load(outfile)
+	if token:
+		click.secho("Enter the User access token\n",fg="green",bold=True)
+		data['token']=input()
+	elif npa:
+		click.secho("Enter the no of pages: ",nl=False,fg="green",bold=True)
+		try:
+	   		val = int(input())
+	   		if val<1:
+	   			raise ValueError()
+	   		else:	
+	   			data['npa']=val
+	   			click.secho("Data changed succesfully.",fg="green",bold=True)
+		except ValueError:
+			click.secho("Invalid value provided.",fg="red",bold=True)
+	elif npo:
+		click.secho("Enter the no of posts: ",nl=False,fg="green",bold=True)
+		try:
+	   		val = int(input())
+	   		if val<1:
+	   			raise ValueError()
+	   		else:	
+	   			data['npo']=val
+	   			click.secho("Data changed succesfully.",fg="green",bold=True)
+		except ValueError:
+			click.secho("Invalid value provided.",fg="red",bold=True)
+	else:
+		click.secho("Option not specified",fg="red",bold=True)
+		sys.exit(0)			
+	with open("userdata.json","w") as outfile:
+		json.dump(data,outfile)
+
+
+
+#searches for the page name
+@cli.command('search',short_help="Search the page.")
+@click.argument('page',metavar="<Page name>",nargs=-1)
+@click.option('--npa',default=-1,help='the no of pages.')
+@click.option('--npo',default=-1,help='the no of top post.')
+def get(page,npa,npo):
+	error_check()
+	search=""
+	for i in page:
+		search=search+str(i).strip()+" "
+	if search.strip()=="":	
+		click.clear()
+		click.secho("No page name provided",fg="red",bold=True)
+		search=input("enter the page name: ")
+	if search.strip()=="":	
+		click.clear()
+		click.secho("No page name provided",fg="red",bold=True)
+		sys.exit(0)
+			
+	with open("userdata.json","r")as outfile:
+		getdata=json.load(outfile)		
+	graph= GraphAPI(getdata['token'])
+	click.clear()
+	if npa==-1:
+		search_res=graph.get('search?q='+search+'&type=page&limit='+str(abs(getdata['npa'])))
+	else:
+		search_res=graph.get('search?q='+search+'&type=page&limit='+str(abs(npa)))	
 	if search_res['data']:
 		 for index,item in enumerate(search_res['data']):
 		    # 	The 'data' key of 'search_res' dictionary is a list of dictionaries of 5 pages
-		     print ((index+1),'	|	',item['name'])
-	    
-		 pno=int(input("Please enter the page no. : "))
+		    s='	'+str(index+1)+' |>  '+item['name']
+		    click.secho(s,fg="blue",bold=True)
+		 click.secho("Please enter the page no: ",nl=False,fg="green",bold=True)
+		 try:
+		 	val=int(input())
+		 	if val>len(search_res['data']) or val<1:
+		 		raise ValueError()
+		 	else:
+		 		pno=val	
+		 except ValueError:
+		 	click.secho("Invalid Page no",fg="red",bold=True)
+		 	sys.exit(0)	
 		 pid=search_res['data'][pno-1]['id']
-	        
-	      
-		 variable = graph.get(pid+'/posts?fields=comments.limit(5),link,full_picture,message&limit=5')
+		 if npo==-1: 
+		 	variable = graph.get(pid+'/posts?fields=comments.limit(5),link,full_picture,message&limit='+str(abs(getdata['npo'])))
+		 else:
+		 	variable = graph.get(pid+'/posts?fields=comments.limit(5),link,full_picture,message&limit='+str(abs(npo)))
+
 
 		 try:
 		 	del variable['paging']
@@ -101,30 +223,4 @@ def page_handler(ctx):
 		 webbrowser.open("Table.html")
 	else:
 		click.secho("We couldn't find anything for ",nl=False)
-		click.secho(PageName,fg="blue",bold=True)
-
-
-
-@cli.command()
-@click.option('--edit/--show',default="True",help="--edit to edit the access token.\n--show to show the current access token.")
-def access_token_handler(edit):
-	
-	try:
-		with open("userdata.txt", "x") as outfile:
-			pass
-	except FileExistsError:
-		pass
-
-		
-	if edit:
-		token=input("Enter the access token\n")
-		with open("userdata.txt", "w")as outfile:
-			outfile.write(token)
-	else:
-		with open("userdata.txt", "r")as outfile:
-			s=outfile.read().strip()
-			if s=="":
-				click.secho("No access token found.",fg="red",bold=True)
-			else:
-				click.secho("Access token is:\n")
-				click.secho(s,fg="green",bold=True)
+		click.secho(search,fg="blue",bold=True)
