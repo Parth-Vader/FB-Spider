@@ -49,9 +49,9 @@ Other than requiring Python3.x , you require the following libraries:<br>
 
 ![demo](data/setup.gif)
 
-4. Now run the program `$ python3 graph.py `
+4. Now run the program using `$ fbspider`.
 
-5. Enter the page name of the page you want to scrape. You see a display of 5 choices and then select one out. 
+5. Instructions for using the CLI can be found [here](./CLI.md).
 
 ![demo](data/run.gif)
 
