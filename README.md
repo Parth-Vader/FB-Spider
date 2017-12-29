@@ -36,8 +36,9 @@ Other than requiring Python3.x , you require the following libraries:<br>
 * PyQt4<br>
 * SIP<br>
 
+# Instructions
 
-# Instructions for the CLI Version
+## Instructions for the CLI Version
 
 [(Back to top)](#table-of-contents)
 
