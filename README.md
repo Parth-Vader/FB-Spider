@@ -53,10 +53,12 @@ Other than requiring Python3.x , you require the following libraries:<br>
 
 5. Instructions for using the CLI can be found [here](./CLI.md).
 
-![demo](data/run.gif)
 
-	Please note that this app will only work for public pages and not from profiles of other people.
-	That would require permission from the user.
+```
+Please note that this app will only work for public pages and not from profiles of other people.
+That would require permission from the user.
+```
+
 6. Enjoy the contents in a table format.
    A file called 'Table.html' would be made in the folder itself.
    You can open it and see the table.
