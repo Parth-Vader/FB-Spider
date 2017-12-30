@@ -36,10 +36,10 @@ Other than requiring Python3.x , you require the following libraries:<br>
 * PyQt4<br>
 * SIP<br>
 
-
-# Instructions for the CLI Version
-
+# Instructions
 [(Back to top)](#table-of-contents)
+
+## Instructions for the CLI Version
 
 1. Clone the repository to your machine.
 
@@ -49,17 +49,72 @@ Other than requiring Python3.x , you require the following libraries:<br>
 
 ![demo](data/setup.gif)
 
-4. Now run the program `$ python3 graph.py `
+4. Now run the program using `$ fbspider`.
 
-5. Enter the page name of the page you want to scrape. You see a display of 5 choices and then select one out. 
+5. ## Instructions for using the CLI
+ 
+### `$ fbspider`
 
-![demo](data/run.gif)
+### When starting the program for the first time, use: `$ fbspider initialise`
 
-	Please note that this app will only work for public pages and not from profiles of other people.
-	That would require permission from the user.
+##### This will ask for your graph ACCESS TOKEN, which you can find [here](https://developers.facebook.com/tools/accesstoken/)
+
+### You can see your saved values by : `$ fbspider show [OPTIONS]`
+
+```
+Options:
+  --token  Shows the user access token stored.
+  --npa    Shows the default no of pages for given input.
+  --npo    Shows the default no of top post in the output.
+  --help   Show this message and exit.
+
+```
+
+### To edit these values, use : `$ fbspider edit [OPTIONS]`
+
+```
+Options:
+  --token  Edits the user access token stored.
+  --npa    Edits the no of pages.
+  --npo    Edits the no of top post.
+  --help   Show this message and exit.
+  
+```
+
+### To search for a page, use : `$ fbspider search [OPTIONS] <Page name>`
+
+```
+Options:
+  --npa INTEGER  the no of pages.
+  --npo INTEGER  the no of top post.
+  --help         Show this message and exit.
+  
+```
+
+### To see the help message, use: `$ fbspider --help`
+
+```
+Usage: fbspider [OPTIONS] COMMAND [ARGS]...
+
+Options:
+  --help  Show this message and exit.
+
+Commands:
+  edit        edits the specified value stored.
+  initialise  Initialise with the required info.
+  search      Search the page.
+  show        Shows the specified value stored.
+```
+
+
+```
+Please note that this app will only work for public pages and not from profiles of other people.
+That would require permission from the user.
+```
+
 6. Enjoy the contents in a table format.
    A file called 'Table.html' would be made in the folder itself.
-   You can open it and see the table.
+   It is opened automatically after running a valid search.
    
 # Instructions for the GUI Version
 
